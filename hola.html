@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Web application technology final project" />
+    <meta name="author" content="Mattia Vesperini, Giuseppe Rinaldi and Luis Sanchez" />
+    <title>Which Phone</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#slider-range" ).slider({
+                range: true,
+                min: 0,
+                max: 1200,
+                values: [ 75, 300 ],
+                slide: function( event, ui ) {
+                    $( "#amount" ).val( "€" + ui.values[ 0 ] + " - €" + ui.values[ 1 ] );
+                }
+            });
+            $( "#amount" ).val( "€" + $( "#slider-range" ).slider( "values", 0 ) +
+                " - €" + $( "#slider-range" ).slider( "values", 1 ) );
+        } );
+    </script>
+    <style>
+        .col-md-6{
+            display: none;
+        }
+
+    </style>
+
+</head>
+<body id="page-top">
+<nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top show-other" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="http://localhost:63342/startbootstrap-freelancer-gh-pages/index.html">Which Phone</a>
+        <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://localhost:63342/startbootstrap-freelancer-gh-pages/hola.html">Find your perfect Phone</a></li>
+                <li class="nav-item"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://localhost:63342/startbootstrap-freelancer-gh-pages/newlogin.html?_ijt=7mk8bg4f8vr35k7o53ldkv90jm">Sign in</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+<section id="range-price3">
+    <form>
+        <p>
+            <label for="amount">Price range:</label>
+            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+        </p>
+
+        <div id="slider-range"></div>
+        <div style='margin-top:20px;'></div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="false" id="apple_checkbox">
+            <label class="form-check-label" for="apple_checkbox">
+                Apple
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="false" id="Xiaomi_checkbox">
+            <label class="form-check-label" for="Xiaomi_checkbox">
+                Xiaomi
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="false" id="Motorola_checkbox">
+            <label class="form-check-label" for="Motorola_checkbox">
+                Motorola
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="false" id="Huawei_checkbox">
+            <label class="form-check-label" for="Huawei_checkbox">
+                Huawei
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="false" id="Samsung_checkbox">
+            <label class="form-check-label" for="Samsung_checkbox">
+                Samsung
+            </label>
+        </div>
+        <div style='margin-top:20px;'></div>
+
+        <select class="form-select  form-select-sm" aria-label=".form-select-sm example" id="preference" onchange="myfunct2(this);">
+            <option selected>What is the characteristic more important when you are looking for a phone?</option>
+            <option value="1">Camera</option>
+            <option value="2">Battery</option>
+            <option value="3">Big Screen</option>
+            <option value="4">Quality-Price</option>
+        </select>
+    </form>
+    <div style='margin-top:20px;'></div>
+
+    <button type="button" class="btn btn-secondary btn-normal btn-find-phone" onclick="findphone()">FIND MY PHONE</button>
+
+    <p id="result_preference">Preference: </p>
+    <p id="result_Price">Price minimum: </p>
+    <p id="result_Price2">Price maximum: </p>
+</section>
+
+<div class="section-phone">
+
+    <div class="heading-phone">
+        <h2>This are the phone:</h2>
+    </div>
+
+    <section class="page-section section-phone-choose device" id="devices">
+        <div class="container">
+            <!-- Devices Grid Items-->
+            <div class="row justify-content-center">
+                <!-- Device 1-->
+                <div class="col-md-6 col-lg-4 mb-5" id="iphone12">
+                    <p id="iphone12_price" hidden="true">689</p>
+                    <p id="iphone12_preference" hidden="true">Camera</p>
+                    <div class="device-item mx-auto" data-bs-toggle="modal" data-bs-target="#deviceModal1">
+                        <div class="device-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="device-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/iphone12.jpg" alt="..." />
+                    </div>
+                </div>
+                <!-- Device 2-->
+                <div class="col-md-6 col-lg-4 mb-5" id="motorola">
+                    <p id="motorola_price" hidden="true">300</p>
+                    <p id="motorola_preference" hidden="true">Battery</p>
+                    <div class="device-item mx-auto" data-bs-toggle="modal" data-bs-target="#deviceModal2">
+                        <div class="device-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="device-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/motorola%20edge+.jpg" alt="..." />
+                    </div>
+                </div>
+                <!-- Device 3-->
+                <div class="col-md-6 col-lg-4 mb-5" id="huawei">
+                    <p id="huawei_price" hidden="true">441</p>
+                    <p id="huawei_preference" hidden="true">Big Screen</p>
+                    <div class="device-item mx-auto" data-bs-toggle="modal" data-bs-target="#deviceModal3">
+                        <div class="device-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="device-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/p40pro.jpg" alt="..." />
+                    </div>
+                </div>
+                <!-- Device 4-->
+                <div class="col-md-6 col-lg-4 mb-5 " id="samsung_a52">
+                    <p id="a52_price" hidden="true">303</p>
+                    <p id="a52_preference" hidden="true">Quality-Price</p>
+                    <div class="device-item mx-auto" data-bs-toggle="modal" data-bs-target="#deviceModal4">
+                        <div class="device-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="device-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/samsung%20a52.jpg" alt="..." />
+                    </div>
+                </div>
+                <!--Device 5-->
+                <div class="col-md-6 col-lg-4 mb-5 " id="samsung_s21">
+                    <p id="s21_price" hidden="true">562</p>
+                    <p id="s21_preference" hidden="true">Camera</p>
+                    <div class="device-item mx-auto" data-bs-toggle="modal" data-bs-target="#deviceModal5">
+                        <div class="device-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="device-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/samsung%20s21.jpg" alt="..." />
+                    </div>
+                </div>
+                <!--Device 7-->
+                <div class="col-md-6 col-lg-4 mb-5 " id="mi11" price="585">
+                    <p id="mi11_price" hidden="true">585</p>
+                    <p id="mi11_preference" hidden="true">Big Screen</p>
+                    <div class="device-item mx-auto" data-bs-toggle="modal" data-bs-target="#deviceModal7">
+                        <div class="device-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="device-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/mi11.jpg" alt="..." />
+                    </div>
+                </div>
+                <!--Device 8-->
+                <div class="col-md-6 col-lg-4 mb-5 " id="poco">
+                    <p id="poco_price" hidden="true">155</p>
+                    <p id="poco_preference" hidden="true">Quality-Price</p>
+                    <div class="device-item mx-auto" data-bs-toggle="modal" data-bs-target="#deviceModal8">
+                        <div class="device-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="device-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/poco.jpg" alt="..." />
+                    </div>
+                </div>
+                <!-- Device 6-->
+                <div class="col-md-6 col-lg-4" id="xiaomi_minote10">
+                    <p id="note10_price" hidden="true">415</p>
+                    <p id="note10_preference" hidden="true">Big Screen</p>
+                    <div class="device-item mx-auto" data-bs-toggle="modal" data-bs-target="#deviceModal6">
+                        <div class="device-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="device-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/mi%20note10.jpg" alt="..." />
+                    </div>
+                </div>
+                <!-- Device 9-->
+                <div class="col-md-6 col-lg-4" id="samsungs20+">
+                    <p id="s20+_price" hidden="true">512</p>
+                    <p id="s20+_preference" hidden="true">Camera</p>
+                    <div class="device-item mx-auto" data-bs-toggle="modal" data-bs-target="#deviceModal9">
+                        <div class="device-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="device-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/s20+.jpg" alt="..." />
+                    </div>
+                </div>
+                <!-- Device 10-->
+                <div class="col-md-6 col-lg-4 mb-5" id="motoe7">
+                    <p id="motoe7_price" hidden="true">109</p>
+                    <p id="motoe7_preference" hidden="true">Quality-Price</p>
+                    <div class="device-item mx-auto" data-bs-toggle="modal" data-bs-target="#deviceModal10">
+                        <div class="device-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="device-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/motoe7.jpg" alt="..." />
+                    </div>
+                </div>
+
+
+                <!-- Device 11-->
+                <div class="col-md-6 col-lg-4 mb-5" id="razer">
+                    <p id="razer_price" hidden="true">1145</p>
+                    <p id="razer_preference" hidden="true">Big Screen</p>
+                    <div class="device-item mx-auto" data-bs-toggle="modal" data-bs-target="#deviceModal11">
+                        <div class="device-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="device-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/motorazer.jpg" alt="..." />
+                    </div>
+                </div>
+
+                <!-- Device 12-->
+                <div class="col-md-6 col-lg-4 mb-5" id="iphonex">
+                    <p id="iphonex_price" hidden="true">283</p>
+                    <p id="iphonex_preference" hidden="true">Quality-Price</p>
+                    <div class="device-item mx-auto" data-bs-toggle="modal" data-bs-target="#deviceModal12">
+                        <div class="device-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="device-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/iphonex.jpg" alt="..." />
+                    </div>
+                </div>
+
+
+                <!-- Device 13-->
+                <div class="col-md-6 col-lg-4" id="iphonese">
+                    <p id="iphonese_price" hidden="true">290</p>
+                    <p id="iphonese_preference" hidden="true">Quality-Price</p>
+                    <div class="device-item mx-auto" data-bs-toggle="modal" data-bs-target="#deviceModal13">
+                        <div class="device-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="device-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/iphonese.jpg" alt="..." />
+                    </div>
+                </div>
+
+                <!-- Device 14-->
+                <div class="col-md-6 col-lg-4" id="mate40">
+                    <p id="mate_price" hidden="true">1057</p>
+                    <p id="mate_preference" hidden="true">Big Screen</p>
+                    <div class="device-item mx-auto" data-bs-toggle="modal" data-bs-target="#deviceModal14">
+                        <div class="device-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="device-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/mate40pro.jpg" alt="..." />
+                    </div>
+                </div>
+
+                <!-- Device 15-->
+                <div class="col-md-6 col-lg-4" id="honorv30">
+                    <p id="honorv30_price" hidden="true">343</p>
+                    <p id="honorv30_preference" hidden="true">Battery</p>
+                    <div class="device-item mx-auto" data-bs-toggle="modal" data-bs-target="#deviceModal15">
+                        <div class="device-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="device-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/huaweihonorv30.jpg" alt="..." />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+</div>
+
+<!-- Device Modals-->
+<!-- Device Modal 1-->
+<div class="device-modal modal fade" id="deviceModal1" tabindex="-1" aria-labelledby="deviceModal1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            <div class="modal-body text-center pb-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 modal-phone">
+                            <!-- Device Modal - Title-->
+                            <h2 class="device-modal-title text-secondary text-uppercase mb-0">Iphone 12</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <!-- device Modal - Image-->
+                            <img class="img-fluid rounded mb-5 " src="assets/img/portfolio/iphone12.jpg" alt="..." />
+                            <!-- device Modal - Text-->
+                            <p class="mb-4 modal-phone-text">
+                                <B>OS: </B>
+                                iOS
+                                <br>
+                                <B>Battery:</B>
+                                2815mAh
+                                <br>
+                                <B>Display:</B>
+                                OLED
+                                <br>
+                                <B>Camera:</B>
+                                12 mPx
+                                <br>
+                                <B>Ram:</B>
+                                4 GB
+                                <br>
+                                <B>Price:</B>
+                                689
+                            </p>
+                            <button class="btn btn-primary" onclick="window.location.href='https://www.amazon.de/Neues-Apple-iPhone-12-64-GB/dp/B08L5TNKZC?tag=kimovil0c-21&th=1'">Buy it Online</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Device Modal 2-->
+<div class="device-modal modal fade" id="deviceModal2" tabindex="-1" aria-labelledby="deviceModal2" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            <div class="modal-body text-center pb-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 modal-phone">
+                            <!-- Device Modal - Title-->
+                            <h2 class="device-modal-title text-secondary text-uppercase mb-0">Motorola edge+</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <!-- Device Modal - Image-->
+                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/motorola%20edge+.jpg" alt="..." />
+                            <!-- Device Modal - Text-->
+                            <p class="mb-4 modal-phone-text">
+                                <B>OS: </B>
+                                Android
+                                <br>
+                                <B>Battery:</B>
+                                4500mAh
+                                <br>
+                                <B>Display:</B>
+                                OLED
+                                <br>
+                                <B>Camera:</B>
+                                64 mPx
+                                <br>
+                                <B>Ram:</B>
+                                6 GB
+                                <br>
+                                <B>Price:</B>
+                                €300
+                            </p>
+                            <button class="btn btn-primary" onclick="window.location.href='https://www.amazon.it/Motorola-Edge-Qualcomm-Snapdragon-Octa-Core/dp/B0882BNLTK/ref=sr_1_1?__mk_it_IT=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=motorola%2B20edge%2B%2B&qid=1622060859&sr=8-1&th=1'">Buy it Online</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Device Modal 3-->
+<div class="device-modal modal fade" id="deviceModal3" tabindex="-1" aria-labelledby="deviceModal3" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            <div class="modal-body text-center pb-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 modal-phone">
+                            <!-- Device Modal - Title-->
+                            <h2 class="device-modal-title text-secondary text-uppercase mb-0">Huawei P40 Pro</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <!-- Device Modal - Image-->
+                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/p40pro.jpg" alt="..." />
+                            <!-- Device Modal - Text-->
+                            <p class="mb-4 modal-phone-text">
+                                <B>OS: </B>
+                                Android
+                                <br>
+                                <B>Battery: </B>
+                                4200mAh
+                                <br>
+                                <B>Display: </B> OLED <br>
+                                <B>Camera: </B> 52 Mpx
+                                <br>
+                                <B>Ram: </B> 8 GB
+                                <br>
+                                <B>Price:</B> €441
+                            </p>
+                            <button class="btn btn-primary" onclick="window.location.href='https://www.amazon.it/HUAWEI-P40-Pro-Smartphone-Silver/dp/B085JJQT49/ref=sr_1_4?__mk_it_IT=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=p40+pro&qid=1622061943&sr=8-4'">Buy it Online</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- device Modal 4-->
+<div class="device-modal modal fade" id="deviceModal4" tabindex="-1" aria-labelledby="deviceModal4" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            <div class="modal-body text-center pb-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 modal-phone">
+                            <!-- Device Modal - Title-->
+                            <h2 class="device-modal-title text-secondary text-uppercase mb-0">Samsung a52</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <!-- Device Modal - Image-->
+                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/samsung%20a52.jpg" alt="..." />
+                            <!-- Device Modal - Text-->
+                            <p class="mb-4 modal-phone-text">
+                                <B>OS: </B>
+                                Android
+                                <br>
+                                <B>Battery:</B>
+                                4500mAh
+                                <br>
+                                <B>Display:</B>
+                                AMOLED
+                                <br>
+                                <B>Camera:</B>
+                                64 mPx
+                                <br>
+                                <B>Ram:</B>
+                                6 GB
+                                <br>
+                                <B>Price:</B>
+                                €303
+                            </p>
+                            <button class="btn btn-primary" onclick="window.location.href='https://www.amazon.it/dp/B08VZGJSY7/ref=redir_mobile_desktop?_encoding=UTF8&aaxitk=0c9955b3387c468f2db394e89d34338d&hsa_cr_id=9013514000402&pd_rd_plhdr=t&pd_rd_r=58d8fe34-d224-478f-8b4b-b6dc2b880b7c&pd_rd_w=oLgcZ&pd_rd_wg=tYxGW&ref_=sbx_be_s_sparkle_mcd_asin_0_img'">Buy it Online</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Device Modal 5-->
+<div class="device-modal modal fade" id="deviceModal5" tabindex="-1" aria-labelledby="deviceModal5" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            <div class="modal-body text-center pb-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 modal-phone">
+                            <!-- Device Modal - Title-->
+                            <h2 class="device-modal-title text-secondary text-uppercase mb-0">Samsung S21</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <!-- Device Modal - Image-->
+                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/samsung%20s21.jpg" alt="..." />
+                            <!-- Device Modal - Text-->
+                            <p class="mb-4 modal-phone-text">
+                                <B>OS: </B>
+                                Android
+                                <br>
+                                <B>Battery:</B>
+                                4000mAh
+                                <br>
+                                <B>Display:</B>
+                                Dynamic AMOLED 2x
+                                <br>
+                                <B>Camera:</B>
+                                12 mPx
+                                <br>
+                                <B>Ram:</B>
+                                8 GB
+                                <br>
+                                <B>Price:</B>
+                                €562
+                            </p>
+                            <button class="btn btn-primary" onclick="window.location.href='https://www.amazon.it/Smartphone-fotocamere-posteriori-Batteria-Versione/dp/B08Q8L44GJ/ref=sr_1_2?__mk_it_IT=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=samsung+s21&qid=1622062303&sr=8-2'">Buy it Online</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Device Modal 6-->
+<div class="device-modal modal fade" id="deviceModal6" tabindex="-1" aria-labelledby="deviceModal6" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            <div class="modal-body text-center pb-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 modal-phone">
+                            <!-- Device Modal - Title-->
+                            <h2 class="device-modal-title text-secondary text-uppercase mb-0">Xiaomi mi note 10</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <!-- Device Modal - Image-->
+                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/mi%20note10.jpg" alt="..." />
+                            <!-- Device Modal - Text-->
+                            <p class="mb-4 modal-phone-text">
+                                <B>OS: </B>
+                                Android
+                                <br>
+                                <B>Battery: </B>
+                                5260mAh
+                                <br>
+                                <B>Display: </B> AMOLED <br>
+                                <B>Camera: </B> 108 Mpx
+                                <br>
+                                <B>Ram: </B> 6 GB
+                                <br>
+                                <B>Price:</B> €415
+                            </p>
+                            <button class="btn btn-primary" onclick="window.location.href='https://www.amazon.it/Xiaomi-Smartphone-Schermo-Curved-Midnight/dp/B07ZGJHS3N/ref=sr_1_3?__mk_it_IT=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=mi+note+10&qid=1622062403&sr=8-3'">Buy it Online</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Device Modal 7-->
+<div class="device-modal modal fade" id="deviceModal7" tabindex="-1" aria-labelledby="deviceModal7" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            <div class="modal-body text-center pb-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 modal-phone">
+                            <!-- Device Modal - Title-->
+                            <h2 class="device-modal-title text-secondary text-uppercase mb-0">Xiaomi mi 11</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <!-- Device Modal - Image-->
+                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/mi11.jpg" alt="..." />
+                            <!-- Device Modal - Text-->
+                            <p class="mb-4 modal-phone-text">
+                                <B>OS: </B>
+                                Android
+                                <br>
+                                <B>Battery: </B>
+                                4600mAh
+                                <br>
+                                <B>Display: </B> AMOLED <br>
+                                <B>Camera: </B> 108 Mpx
+                                <br>
+                                <B>Ram: </B> 8 GB
+                                <br>
+                                <B>Price:</B> €585
+                            </p>
+                            <button class="btn btn-primary" onclick="window.location.href='https://www.amazon.it/Xiaomi-Smartphone-Schermo-Curved-Midnight/dp/B07ZGJHS3N/ref=sr_1_3?__mk_it_IT=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=mi+note+10&qid=1622062403&sr=8-3'">Buy it Online</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Device Modal 8-->
+<div class="device-modal modal fade" id="deviceModal8" tabindex="-1" aria-labelledby="deviceModal8" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            <div class="modal-body text-center pb-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 modal-phone">
+                            <!-- Device Modal - Title-->
+                            <h2 class="device-modal-title text-secondary text-uppercase mb-0">Pocophone X3</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <!-- Device Modal - Image-->
+                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/poco.jpg" alt="..." />
+                            <!-- Device Modal - Text-->
+                            <p class="mb-4 modal-phone-text">
+                                <B>OS: </B>
+                                Android
+                                <br>
+                                <B>Battery: </B>
+                                5160mAh
+                                <br>
+                                <B>Display: </B> AMOLED <br>
+                                <B>Camera: </B> 64 Mpx
+                                <br>
+                                <B>Ram: </B> 6 GB
+                                <br>
+                                <B>Price:</B> €155</p>
+                            <button class="btn btn-primary" onclick="window.location.href='https://www.amazon.it/Xiaomi-Poco-X3-Nfc-Smartphone/dp/B08H5GXXD7/ref=sr_1_2?__mk_it_IT=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=pocophone%2Bx3&qid=1622062514&sr=8-2&th=1'">Buy it Online</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Device Modal 9-->
+<div class="device-modal modal fade" id="deviceModal9" tabindex="-1" aria-labelledby="deviceModal9" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            <div class="modal-body text-center pb-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 modal-phone">
+                            <!-- Device Modal - Title-->
+                            <h2 class="device-modal-title text-secondary text-uppercase mb-0">Samsung S20+</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <!-- Device Modal - Image-->
+                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/s20+.jpg" alt="..." />
+                            <!-- Device Modal - Text-->
+                            <p class="mb-4 modal-phone-text">
+                                <B>OS: </B>
+                                Android
+                                <br>
+                                <B>Battery:</B>
+                                4500mAh
+                                <br>
+                                <B>Display:</B>
+                                Dynamic AMOLED 2X<br>
+                                <B>Camera:</B>
+                                12 mPx
+                                <br>
+                                <B>Ram:</B>
+                                6 GB
+                                <br>
+                                <B>Price: </B>
+                                €512
+                            </p>
+                            <button class="btn btn-primary" onclick="window.location.href='https://www.amazon.it/Samsung-Smartphone-Fotocamere-Posteriori-Espandibili/dp/B084LFYNQ2/ref=sr_1_1?__mk_it_IT=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=samsung+s20+%2B&qid=1622062565&sr=8-1'">Buy it Online</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Device Modal 10-->
+<div class="device-modal modal fade" id="deviceModal10" tabindex="-1" aria-labelledby="deviceModal10" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            <div class="modal-body text-center pb-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 modal-phone">
+                            <!-- Device Modal - Title-->
+                            <h2 class="device-modal-title text-secondary text-uppercase mb-0">Motorola E7 Plus</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <!-- Device Modal - Image-->
+                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/motoe7.jpg" alt="..." />
+                            <!-- Device Modal - Text-->
+                            <p class="mb-4 modal-phone-text"><B>OS: </B>
+                                Android
+                                <br>
+                                <B>Battery:</B>
+                                5000mAh
+                                <br>
+                                <B>Display:</B>
+                                IPS
+                                <br>
+                                <B>Camera:</B>
+                                48 mPx
+                                <br>
+                                <B>Ram:</B>
+                                4 GB
+                                <br>
+                                <B>Price:</B>
+                                €109</p>
+                            <button class="btn btn-primary" onclick="window.location.href='https://www.amazon.it/Motorola-moto-e7-processore-octa-core/dp/B07KVW6BTH/ref=sr_1_1?__mk_it_IT=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Motorola+E7+Plus&qid=1622062618&sr=8-1'">Buy it Online</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Device Modal 11-->
+<div class="device-modal modal fade" id="deviceModal11" tabindex="-1" aria-labelledby="deviceModal11" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            <div class="modal-body text-center pb-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 modal-phone">
+                            <!-- Device Modal - Title-->
+                            <h2 class="device-modal-title text-secondary text-uppercase mb-0">Motorola Razr</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <!-- Device Modal - Image-->
+                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/motorazer.jpg" alt="..." />
+                            <!-- Device Modal - Text-->
+                            <p class="mb-4 modal-phone-text">
+                                <B>OS: </B>
+                                Android
+                                <br>
+                                <B>Battery:</B>
+                                2800mAh
+                                <br>
+                                <B>Display:</B>
+                                OLED
+                                <br>
+                                <B>Camera:</B>
+                                48 mPx
+                                <br>
+                                <B>Ram:</B>
+                                8 GB
+                                <br>
+                                <B>Price:</B>
+                                €1100
+                            </p>
+                            <button class="btn btn-primary" onclick="window.location.href='https://www.amazon.it/Motorola-5G-Smartphone-flessibile-Fotocamera/dp/B07KVVWBK1/ref=sr_1_4?__mk_it_IT=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Motorola+Razer&qid=1622062791&sr=8-4'">Buy it Online</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Device Modal 12-->
+<div class="device-modal modal fade" id="deviceModal12" tabindex="-1" aria-labelledby="deviceModal12" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            <div class="modal-body text-center pb-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 modal-phone">
+                            <!-- Device Modal - Title-->
+                            <h2 class="device-modal-title text-secondary text-uppercase mb-0">Iphone X</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <!-- Device Modal - Image-->
+                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/iphonex.jpg" alt="..." />
+                            <!-- Device Modal - Text-->
+                            <p class="mb-4 modal-phone-text">
+                                <B>OS: </B>
+                                iOS
+                                <br>
+                                <B>Battery:</B>
+                                2716mAh
+                                <br>
+                                <B>Display:</B>
+                                OLED
+                                <br>
+                                <B>Camera:</B>
+                                12 mPx
+                                <br>
+                                <B>Ram:</B>
+                                3 GB
+                                <br>
+                                <B>Price:</B>
+                                €283
+                            </p>
+                            <button class="btn btn-primary" onclick="window.location.href='https://www.aliexpress.com/item/4001114531008.html?aff_fcid=28d254a2e7f3491c9910aef01f6b519e-1622062951463-02656-32E36rea&cv=4161&aff_fsk=32E36rea&af=52769&aff_platform=aaf&sk=32E36rea&aff_trace_key=28d254a2e7f3491c9910aef01f6b519e-1622062951463-02656-32E36rea&cn=3702&dp=eJwFwYkRgDAIBMCKmDkOAyHdkMcm1N7dtQAfDHUSzmz66qjdW78tZB5vonqmpF4U1CKyEGbr%7CwGStw5R&terminal_id=37d63a6a44464e8aa611d7380edabdc9'">Buy it Online</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Device Modal 13-->
+<div class="device-modal modal fade" id="deviceModal13" tabindex="-1" aria-labelledby="deviceModal13" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            <div class="modal-body text-center pb-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 modal-phone">
+                            <!-- Device Modal - Title-->
+                            <h2 class="device-modal-title text-secondary text-uppercase mb-0">Iphone SE 2020</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <!-- Device Modal - Image-->
+                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/iphonese.jpg" alt="..." />
+                            <!-- Device Modal - Text-->
+                            <p class="mb-4 modal-phone-text">
+                                <B>OS: </B>
+                                iOS
+                                <br>
+                                <B>Battery:</B>
+                                1821mAh
+                                <br>
+                                <B>Display:</B>
+                                LCD IPS
+                                <br>
+                                <B>Camera:</B>
+                                12 mPx
+                                <br>
+                                <B>Ram:</B>
+                                3 GB
+                                <br>
+                                <B>Price:</B>
+                                €290
+                            </p>
+                            <button class="btn btn-primary" onclick="window.location.href='https://www.amazon.de/iPhone-SE-Farbe-Speicher-64GB-Rot/dp/B08D351RSN?tag=kimovil0c-21'">Buy it Online</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Device Modal 14-->
+<div class="device-modal modal fade" id="deviceModal14" tabindex="-1" aria-labelledby="deviceModal14" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            <div class="modal-body text-center pb-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 modal-phone">
+                            <!-- Device Modal - Title-->
+                            <h2 class="device-modal-title text-secondary text-uppercase mb-0">Huawei Mate 40 Pro</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <!-- Device Modal - Image-->
+                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/mate40pro.jpg" alt="..." />
+                            <!-- Device Modal - Text-->
+                            <p class="mb-4 modal-phone-text">
+                                <B>OS: </B>
+                                Android
+                                <br>
+                                <B>Battery:</B>
+                                4400mAh
+                                <br>
+                                <B>Display:</B>
+                                OLED
+                                <br>
+                                <B>Camera:</B>
+                                52 mPx
+                                <br>
+                                <B>Ram:</B>
+                                8 GB
+                                <br>
+                                <B>Price:</B>
+                                €1057
+                            </p>
+                            <button class="btn btn-primary" onclick="window.location.href='https://tradingshenzhen.com/en/huawei-mate-40-pro-mate-40/huawei-mate-40-pro-8gb256gb-kirin-9000-50-mp-cine-kamera?utm_source=kimovil&utm_campaign=kimovil_affiliated_traffic&utm_medium=productlisting&utm_content=huawei-mate-40-pro'">Buy it Online</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Device Modal 15-->
+<div class="device-modal modal fade" id="deviceModal15" tabindex="-1" aria-labelledby="deviceModal15" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            <div class="modal-body text-center pb-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 modal-phone">
+                            <!-- Device Modal - Title-->
+                            <h2 class="device-modal-title text-secondary text-uppercase mb-0"> Huawei honor V30</h2>
+
+                            </h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <!-- Device Modal - Image-->
+                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/huaweihonorv30.jpg" alt="..." />
+                            <!-- Device Modal - Text-->
+                            <p class="mb-4 modal-phone-text"><B>OS: </B>
+                                Android
+                                <br>
+                                <B>Battery:</B>
+                                4200mAh
+                                <br>
+                                <B>Display:</B>
+                                LCD
+                                <br>
+                                <B>Camera:</B>
+                                40 mPx
+                                <br>
+                                <B>Ram:</B>
+                                6 GB
+                                <br>
+                                <B>Price:</B>
+                                €343
+                            </p>
+                            <button class="btn btn-primary" onclick="window.location.href='https://www.dhgate.com/product/original-huawei-honor-v30-5g-lte-cell-phone/509660585.html?f=bm|aff|admitad|416035|5c21037700a5fdd892e907dbdbde12ed|197649|12001|'">Buy it Online</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+    const checkbox_huawei = document.getElementById('Huawei_checkbox')
+    const checkbox_apple = document.getElementById('apple_checkbox')
+    const checkbox_xiaomi = document.getElementById('Xiaomi_checkbox')
+    const checkbox_motorola = document.getElementById('Motorola_checkbox')
+    const checkbox_samsung = document.getElementById('Samsung_checkbox')
+
+    const iphone12=document.getElementById("iphone12")
+    const iphone12_price=document.getElementById("iphone12_price")
+    const iphone12_preference=document.getElementById("iphone12_preference")
+
+    const huawei=document.getElementById("huawei")
+    const huawei_price=document.getElementById("huawei_price")
+    const huawei_preference=document.getElementById("huawei_preference")
+
+    const xiaomi_note=document.getElementById("xiaomi_minote10")
+    const note_price=document.getElementById("note10_price")
+    const note_preference=document.getElementById("note10_preference")
+
+    const motorola=document.getElementById("motorola")
+    const motorola_price=document.getElementById("motorola_price")
+    const motorola_preference=document.getElementById("motorola_preference")
+
+    const samsungs21=document.getElementById("samsung_s21")
+    const samsungs21_price=document.getElementById("s21_price")
+    const samsungs21_preference=document.getElementById("s21_preference")
+
+    const samsunga52=document.getElementById("samsung_a52")
+    const a52_price=document.getElementById("a52_price")
+    const a52_preference=document.getElementById("a52_preference")
+
+    const mi11=document.getElementById("mi11")
+    const mi11_price=document.getElementById("mi11_price")
+    const mi11_preference=document.getElementById("mi11_preference")
+
+    const pocox3=document.getElementById("poco")
+    const poco_price=document.getElementById("poco_price")
+    const poco_preference=document.getElementById("poco_preference")
+
+    const s20=document.getElementById('samsungs20+')
+    const s20price=document.getElementById('s20+_price')
+    const s20preference=document.getElementById('s20+_preference')
+
+    const motoe7=document.getElementById('motoe7')
+    const motoe7_price=document.getElementById("motoe7_price")
+    const motoe7_preference=document.getElementById("motoe7_preference")
+
+    const razer=document.getElementById('razer')
+    const razer_price=document.getElementById('razer_price')
+    const razer_preference=document.getElementById('razer_preference')
+
+    const iphonex=document.getElementById('iphonex')
+    const iphonex_price=document.getElementById('iphonex_price')
+    const iphonex_preference=document.getElementById('iphonex_preference')
+
+    const iphonese=document.getElementById('iphonese')
+    const iphonese_price=document.getElementById('iphonese_price')
+    const iphonese_preference=document.getElementById('iphonese_preference')
+
+    const mate40pro = document.getElementById('mate40')
+    const mate40pro_price = document.getElementById('mate_price')
+    const mate40pro_preference = document.getElementById('mate_preference')
+
+    const honorv30=document.getElementById('honorv30')
+    const honorv30_price=document.getElementById('honorv30_price')
+    const honorv30_preference=document.getElementById('honorv30_preference')
+
+
+    var preference="What is the characteristic more important when you are looking for a phone?"
+    var init="What is the characteristic more important when you are looking for a phone?"
+    var minprice=0
+    var maxprice=1200
+    var huawei_value= false
+    var apple_value= false
+    var xiaomi_value= false
+    var motorola_value=false
+    var samsung_value=false
+
+    function findphone(){
+        minprice=$( "#slider-range" ).slider( "values", 0 )
+        maxprice=$( "#slider-range" ).slider( "values", 1 )
+        document.getElementById("result_preference").innerHTML = "Preference: "+preference.toString()
+        document.getElementById("result_Price").innerHTML = "Price minimum: " +minprice.toString()
+        document.getElementById("result_Price2").innerHTML="Price maximum: "+maxprice.toString()
+    }
+
+
+    function myfunct2(sel) {
+        preference=sel.options[sel.selectedIndex].text
+    }
+
+
+
+
+    checkbox_motorola.addEventListener('change', function() {
+        minprice=$( "#slider-range" ).slider( "values", 0 )
+        maxprice=$( "#slider-range" ).slider( "values", 1 )
+        if (this.checked) {
+            motorola_value=true
+            if(parseInt((motorola_price.innerHTML)<=maxprice & parseInt(motorola_price.innerHTML)>=minprice)&((motorola_preference.innerHTML===preference)||(preference===init))){
+                motorola.style.display='block'
+            }
+            else{
+                motorola.style.display='none'
+            }
+            if((parseInt(motoe7_price.innerHTML)<=maxprice && parseInt(motoe7_price.innerHTML)>=minprice)&&((motoe7_preference.innerHTML===preference)||(preference===init))){
+                motoe7.style.display='block'
+            }else{
+                motoe7.style.display='none'
+            }
+            if((parseInt(razer_price.innerHTML)<=maxprice && parseInt(razer_price.innerHTML)>=minprice)&&((razer_preference.innerHTML===preference)||(preference===init))){
+                razer.style.display='block'
+            }else {
+                razer.style.display='none'
+            }
+
+        } else {
+            motorola_value=false
+            motorola.style.display='none'
+            motoe7.style.display='none'
+            razer.style.display='none'
+        }
+    })
+
+    checkbox_huawei.addEventListener('change', function() {
+        minprice=$( "#slider-range" ).slider( "values", 0 )
+        maxprice=$( "#slider-range" ).slider( "values", 1 )
+        if (this.checked) {
+            huawei_value=true
+            if((parseInt(huawei_price.innerHTML)<=maxprice && parseInt(huawei_price.innerHTML)>=minprice)&&((razer_preference.innerHTML===preference)||(preference===init))){
+                huawei.style.display = 'block'
+            }
+            else{
+                huawei.style.display='none'
+            }
+            if((parseInt(mate40pro_price.innerHTML)<=maxprice && parseInt(mate40pro_price.innerHTML)>=minprice)&&((mate40pro_preference.innerHTML===preference)||(preference===init))){
+                mate40pro.style.display = 'block'
+            }
+            else{
+                mate40pro.style.display='none'
+            }
+            if((parseInt(honorv30_price.innerHTML)<=maxprice && parseInt(honorv30_price.innerHTML)>=minprice)&&((honorv30_preference.innerHTML===preference)||(preference===init))){
+                honorv30.style.display = 'block'
+            }
+            else{
+                honorv30.style.display='none'
+            }
+        } else {
+            huawei_value=false
+            huawei.style.display='none'
+            mate40pro.style.display='none'
+            honorv30.style.display='none'
+        }
+    })
+
+
+    checkbox_apple.addEventListener('change', (event) => {
+        minprice=$( "#slider-range" ).slider( "values", 0 )
+        maxprice=$( "#slider-range" ).slider( "values", 1 )
+        if (event.currentTarget.checked) {
+            apple_value=true
+            if((parseInt(iphone12_price.innerHTML)<=maxprice && parseInt(iphone12_price.innerHTML)>=minprice)&&((iphone12_preference.innerHTML===preference)||(preference===init))){
+                iphone12.style.display = 'block'
+            }
+            else{
+                iphone12.style.display='none'
+            }
+
+            if((parseInt(iphonex_price.innerHTML)<=maxprice && parseInt(iphonex_price.innerHTML)>=minprice)&&((iphonex_preference.innerHTML===preference)||(preference===init))){
+                iphonex.style.display = 'block'
+            }
+            else{
+                iphonex.style.display='none'
+            }
+
+            if((parseInt(iphonese_price.innerHTML)<=maxprice && parseInt(iphonese_price.innerHTML)>=minprice)&&((iphonese_preference.innerHTML===preference)||(preference===init))){
+                iphonese.style.display = 'block'
+            }
+            else{
+                iphonese.style.display='none'
+            }
+        } else {
+            apple_value=false
+            iphone12.style.display='none'
+            iphonex.style.display='none'
+            iphonese.style.display='none'
+        }
+    })
+
+    checkbox_xiaomi.addEventListener('change', (event) => {
+        minprice=$( "#slider-range" ).slider( "values", 0 )
+        maxprice=$( "#slider-range" ).slider( "values", 1 )
+        if (event.currentTarget.checked) {
+            xiaomi_value = true
+            if((parseInt(note_price.innerHTML)<=maxprice && parseInt(note_price.innerHTML)>=minprice)&&((note_preference.innerHTML===preference)||(preference===init))){
+                xiaomi_note.style.display = 'block'
+            }
+            else{
+                xiaomi_note.style.display='none'
+            }
+            if((parseInt(mi11_price.innerHTML)<=maxprice && parseInt(mi11_price.innerHTML)>=minprice)&&((mi11_preference.innerHTML===preference)||(preference===init))){
+                mi11.style.display = 'block'
+            }
+            else{
+                mi11.style.display='none'
+            }
+            if((parseInt(poco_price.innerHTML)<=maxprice && parseInt(poco_price.innerHTML)>=minprice)&&((poco_preference.innerHTML===preference)||(preference===init))){
+                pocox3.style.display = 'block'
+            }
+            else{
+                pocox3.style.display='none'
+            }
+
+        }else {
+            xiaomi_value=false
+            xiaomi_note.style.display='none'
+            mi11.style.display='none'
+            pocox3.style.display='none'
+        }
+    })
+
+    checkbox_samsung.addEventListener('change', (event) => {
+        minprice=$( "#slider-range" ).slider( "values", 0 )
+        maxprice=$( "#slider-range" ).slider( "values", 1 )
+        if (event.currentTarget.checked) {
+            samsung_value = true
+            if((parseInt(samsungs21_price.innerHTML)<=maxprice && parseInt(samsungs21_price.innerHTML)>=minprice)&&((samsungs21_preference.innerHTML===preference)||(preference===init))){
+                samsungs21.style.display = 'block'
+            }
+            else{
+                samsungs21.style.display='none'
+            }
+
+            if((parseInt(a52_price.innerHTML)<=maxprice && parseInt(a52_price.innerHTML)>=minprice)&&((a52_preference.innerHTML===preference)||(preference===init))){
+                samsunga52.style.display = 'block'
+            }
+            else{
+                samsunga52.style.display='none'
+            }
+
+            if((parseInt(s20price.innerHTML)<=maxprice && parseInt(s20price.innerHTML)>=minprice)&&((s20preference.innerHTML===preference)||(preference===init))){
+                s20.style.display='block'
+            }
+            else{
+                s20.style.display='none'
+            }
+
+        }else {
+            samsung_value=false
+            samsunga52.style.display='none'
+            samsungs21.style.display='none'
+            s20.style.display='none'
+        }
+    })
+</script>
+</body>
+</html>
